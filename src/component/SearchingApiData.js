@@ -3,6 +3,21 @@ import { useEffect, useState } from "react";
 
 function SearchingApiData() {
 
+
+
+  useEffect(() => {
+    const fetchData = () => {
+      fetch("https://jsonplaceholder.typicode.com/users").then((res) => {
+        res.json().then((result) => {
+          console.log(result);
+          
+        });
+      });
+    };
+    fetchData();
+  }, []);
+
+
   return (
     <div>
       <div>
