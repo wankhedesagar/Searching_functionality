@@ -8,6 +8,24 @@ function SearchingApiData() {
   const [filterval, setFilterVal] = useState("");
 
 
+  const handlefilter = (e) => {
+    if (e.target.value === "") {
+      setData(searchApiData);
+    }
+    else {
+      const filterResult = searchApiData.filter(
+        (item) =>
+          item.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          item.username.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      if (filterResult.length > 0) {
+        setData(filterResult);
+      } else {
+        setData([{ name: "No records found" }]);
+      }
+    }
+    setFilterVal(e.target.value);
+  };
 
 
   useEffect(() => {
