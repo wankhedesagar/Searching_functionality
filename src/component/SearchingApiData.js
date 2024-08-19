@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 function SearchingApiData() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchApiData, setSearchApiData] = useState([]);
+  const [filterval, setFilterVal] = useState("");
 
 
 
@@ -26,7 +28,7 @@ function SearchingApiData() {
   return (
     <div>
       <div>
-        <input placeholder="Search"  />
+        <input placeholder="Search" value={filterval} onInput={handlefilter} />
       </div>
       <table>
         <thead>
