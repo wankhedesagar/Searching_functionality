@@ -2,6 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 function SearchingApiData() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
 
 
@@ -10,7 +13,9 @@ function SearchingApiData() {
       fetch("https://jsonplaceholder.typicode.com/users").then((res) => {
         res.json().then((result) => {
           console.log(result);
-          
+          setLoading(true);
+          setData(result);
+          setLoading(false);        
         });
       });
     };
@@ -32,7 +37,22 @@ function SearchingApiData() {
             <th>Phone</th>
           </tr>
         </thead>
-
+        {loading === true ? (
+          <p>loading...</p>
+        ) : (
+          data.map((item) => {
+            return (
+              <tbody key={item.id}>
+                <tr>
+                  <td>{item.name}</td>
+                  <td>{item.username}</td>
+                  <td>{item.email}</td>
+                  <td>{item.phone}</td>
+                </tr>
+              </tbody>
+            );
+          })
+        )}
 
       </table>
     </div>
